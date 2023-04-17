@@ -1,6 +1,7 @@
 package com.hy.level2.p87377;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 }
@@ -37,6 +38,23 @@ class Solution {
 
         return Point.of(x, y);
     }
+
+    public List<Point> intersections(int[][] line) {
+        List<Point> points = new ArrayList<>();
+
+        for (int i = 0; i < line.length; i++) {
+            for (int j = i + 1; j < line.length; j++) {
+                int[] line1 = line[i];
+                int[] line2 = line[j];
+
+                Point point = intersection(line1, line2);
+
+                if (point != null) points.add(point);
+            }
+        }
+
+        return points;
+    }
 }
 
 class Point {
@@ -65,5 +83,13 @@ class Point {
 
         if (x != point.x) return false;
         return y == point.y;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
