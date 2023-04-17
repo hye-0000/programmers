@@ -2,6 +2,7 @@ package com.hy.level2.p87377;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main {
 }
@@ -110,6 +111,14 @@ class Solution {
 
         return matrix;
     }
+
+    public String[] drawOnCoordinate(char[][] matrix) {
+        return Ut.revRange(0, matrix.length)
+                .boxed()
+                .map(i -> matrix[i])
+                .map(row -> new String(row))
+                .toArray(String[]::new);
+    }
 }
 
 class Point {
@@ -155,5 +164,12 @@ class Point {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+}
+
+class Ut {
+    static IntStream revRange(int from, int to) {
+        return IntStream.range(from, to)
+                .map(i -> to - i + from - 1);
     }
 }
