@@ -123,7 +123,7 @@ public class Tests {
     @DisplayName("minPoint, [Point.of(1, 1), Point.of(-1, 1)]")
     void t03() {
         assertThat(
-                new Solution().getMinPoint(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                new Solution().getMinPoint(Points.of(Point.of(1, 1), Point.of(-1, 1)))
         ).isEqualTo(
                 Point.of(-1, 1)
         );
@@ -133,7 +133,7 @@ public class Tests {
     @DisplayName("minPoint, [Point.of(-5, 1), Point.of(-1, -7)]")
     void t03_2() {
         assertThat(
-                new Solution().getMinPoint(Set.of(Point.of(-5, 1), Point.of(-1, -7)))
+                new Solution().getMinPoint(Points.of(Point.of(-5, 1), Point.of(-1, -7)))
         ).isEqualTo(
                 Point.of(-5, -7)
         );
@@ -143,7 +143,7 @@ public class Tests {
     @DisplayName("maxPoint, [Point.of(1, 1), Point.of(-1, 1)]")
     void t04() {
         assertThat(
-                new Solution().getMaxPoint(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                new Solution().getMaxPoint(Points.of(Point.of(1, 1), Point.of(-1, 1)))
         ).isEqualTo(
                 Point.of(1, 1)
         );
@@ -153,7 +153,7 @@ public class Tests {
     @DisplayName("maxPoint, [Point.of(4, 1), Point.of(-1, 6)]")
     void t04_2() {
         assertThat(
-                new Solution().getMaxPoint(Set.of(Point.of(4, 1), Point.of(-1, 6)))
+                new Solution().getMaxPoint(Points.of(Point.of(4, 1), Point.of(-1, 6)))
         ).isEqualTo(
                 Point.of(4, 6)
         );
@@ -163,7 +163,7 @@ public class Tests {
     @DisplayName("emptyMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
     void t05() {
         assertThat(
-                new Solution().emptyMatrix(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                new Solution().emptyMatrix(Points.of(Point.of(1, 1), Point.of(-1, 1)))
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.'}
@@ -175,7 +175,7 @@ public class Tests {
     @DisplayName("emptyMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
     void t05_2() {
         assertThat(
-                new Solution().emptyMatrix(Set.of(Point.of(4, -7), Point.of(-1, 6)))
+                new Solution().emptyMatrix(Points.of(Point.of(4, -7), Point.of(-1, 6)))
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.', '.', '.', '.'},
@@ -200,7 +200,7 @@ public class Tests {
     @DisplayName("positivePoints, [Point.of(1, 1), Point.of(-1, 1)]")
     void t06() {
         assertThat(
-                new Solution().positivePoints(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                new Solution().positivePoints(Points.of(Point.of(1, 1), Point.of(-1, 1)))
         ).isEqualTo(
                 Set.of(Point.of(2, 0), Point.of(0, 0))
         );
@@ -210,7 +210,7 @@ public class Tests {
     @DisplayName("positivePoints, [Point.of(4, -7), Point.of(-1, 6)]")
     void t06_2() {
         assertThat(
-                new Solution().positivePoints(Set.of(Point.of(4, -7), Point.of(-1, 6)))
+                new Solution().positivePoints(Points.of(Point.of(4, -7), Point.of(-1, 6)))
         ).isEqualTo(
                 Set.of(Point.of(5, 0), Point.of(0, 13))
         );
@@ -220,7 +220,7 @@ public class Tests {
     @DisplayName("transformToMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
     void t07() {
         assertThat(
-                new Solution().transformToMatrix(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                new Solution().transformToMatrix(Points.of(Point.of(1, 1), Point.of(-1, 1)))
         ).isEqualTo(
                 new char[][]{
                         {'*', '.', '*'}
@@ -232,7 +232,7 @@ public class Tests {
     @DisplayName("transformToMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
     void t07_2() {
         assertThat(
-                new Solution().transformToMatrix(Set.of(Point.of(4, -7), Point.of(-1, 6)))
+                new Solution().transformToMatrix(Points.of(Point.of(4, -7), Point.of(-1, 6)))
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.', '.', '.', '*'},

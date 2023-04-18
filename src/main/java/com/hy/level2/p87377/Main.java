@@ -3,6 +3,7 @@ package com.hy.level2.p87377;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
 }
@@ -10,7 +11,7 @@ public class Main {
 class Solution {
     public String[] solution(int[][] line) {
         // 교점 구하기
-        Set<Point> points = intersections(line).toSet();
+        Points points = intersections(line);
         // 매트릭스로 옮기기
         char[][] matrix = transformToMatrix(points);
 
@@ -61,7 +62,7 @@ class Solution {
         return points;
     }
 
-    public Point getMinPoint(Set<Point> points) {
+    public Point getMinPoint(Points points) {
         long x = Long.MAX_VALUE;
         long y = Long.MAX_VALUE;
 
@@ -73,7 +74,7 @@ class Solution {
         return Point.of(x, y);
     }
 
-    public Point getMaxPoint(Set<Point> points) {
+    public Point getMaxPoint(Points points) {
         long x = Long.MIN_VALUE;
         long y = Long.MIN_VALUE;
 
@@ -85,7 +86,7 @@ class Solution {
         return Point.of(x, y);
     }
 
-    public char[][] emptyMatrix(Set<Point> points) {
+    public char[][] emptyMatrix(Points points) {
         Point minPoint = getMinPoint(points);
         Point maxPoint = getMaxPoint(points);
 
@@ -99,15 +100,17 @@ class Solution {
         return matrix;
     }
 
-    public Set<Point> positivePoints(Set<Point> points) {
+    public Points positivePoints(Points points) {
         Point minPoint = getMinPoint(points);
 
-        return points.stream()
-                .map(p -> Point.of(p.x - minPoint.x, p.y - minPoint.y))
-                .collect(Collectors.toSet());
+        return Points.of(
+                points.stream()
+                        .map(p -> Point.of(p.x - minPoint.x, p.y - minPoint.y))
+                        .toArray(Point[]::new)
+        );
     }
 
-    public char[][] transformToMatrix(Set<Point> points) {
+    public char[][] transformToMatrix(Points points) {
         char[][] matrix = emptyMatrix(points);
         points = positivePoints(points);
 
@@ -177,7 +180,7 @@ class Point {
 //특수기능: 가변인자
 //Points.of(arg1);
 //Points.of(arg1, arg2); -> 파라미터들이 알아서 배열로 들어감
-class Points{
+class Points implements Iterable<Point>{
     private final Set<Point> data;
 
     private Points(Set<Point> data) {
@@ -211,6 +214,15 @@ class Points{
     @Override
     public int hashCode() {
         return data != null ? data.hashCode() : 0;
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return data.iterator();
+    }
+
+    public Stream<Point> stream() {
+        return data.stream();
     }
 }
 
