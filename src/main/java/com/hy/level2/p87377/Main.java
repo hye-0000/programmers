@@ -13,7 +13,7 @@ class Solution {
         // 교점 구하기
         Points points = intersections(line);
         // 매트릭스로 옮기기
-        char[][] matrix = transformToMatrix(points);
+        char[][] matrix = points.toMatrix();
 
         return drawOnCoordinate(matrix);
     }
@@ -62,28 +62,7 @@ class Solution {
         return points;
     }
 
-    public char[][] emptyMatrix(Points points) {
-        Point minPoint = points.getMinPoint();
-        Point maxPoint = points.getMaxPoint();
 
-        int width = (int) (maxPoint.x - minPoint.x + 1);
-        int height = (int) (maxPoint.y - minPoint.y + 1);
-
-        char[][] matrix = new char[height][width];
-
-        Arrays.stream(matrix).forEach(row -> Arrays.fill(row, '.'));
-
-        return matrix;
-    }
-
-    public char[][] transformToMatrix(Points points) {
-        char[][] matrix = emptyMatrix(points);
-        points = points.positivePoints();
-
-        points.forEach(p -> matrix[(int) p.y][(int) p.x] = '*');
-
-        return matrix;
-    }
 
     public String[] drawOnCoordinate(char[][] matrix) {
         return Ut.revRange(0, matrix.length)
@@ -223,6 +202,29 @@ class Points implements Iterable<Point>{
                         .map(p -> Point.of(p.x - minPoint.x, p.y - minPoint.y))
                         .toArray(Point[]::new)
         );
+    }
+
+    public char[][] emptyMatrix() {
+        Point minPoint = getMinPoint();
+        Point maxPoint = getMaxPoint();
+
+        int width = (int) (maxPoint.x - minPoint.x + 1);
+        int height = (int) (maxPoint.y - minPoint.y + 1);
+
+        char[][] matrix = new char[height][width];
+
+        Arrays.stream(matrix).forEach(row -> Arrays.fill(row, '.'));
+
+        return matrix;
+    }
+
+    public char[][] toMatrix() {
+        char[][] matrix = emptyMatrix();
+        Points points = positivePoints();
+
+        points.forEach(p -> matrix[(int) p.y][(int) p.x] = '*');
+
+        return matrix;
     }
 }
 

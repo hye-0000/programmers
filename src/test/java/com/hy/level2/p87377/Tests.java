@@ -163,7 +163,7 @@ public class Tests {
     @DisplayName("emptyMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
     void t05() {
         assertThat(
-                new Solution().emptyMatrix(Points.of(Point.of(1, 1), Point.of(-1, 1)))
+                Points.of(Point.of(1, 1), Point.of(-1, 1)).emptyMatrix()
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.'}
@@ -175,7 +175,7 @@ public class Tests {
     @DisplayName("emptyMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
     void t05_2() {
         assertThat(
-                new Solution().emptyMatrix(Points.of(Point.of(4, -7), Point.of(-1, 6)))
+                Points.of(Point.of(4, -7), Point.of(-1, 6)).emptyMatrix()
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.', '.', '.', '.'},
@@ -217,10 +217,10 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("transformToMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
+    @DisplayName("toMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
     void t07() {
         assertThat(
-                new Solution().transformToMatrix(Points.of(Point.of(1, 1), Point.of(-1, 1)))
+                Points.of(Point.of(1, 1), Point.of(-1, 1)).toMatrix()
         ).isEqualTo(
                 new char[][]{
                         {'*', '.', '*'}
@@ -229,10 +229,10 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("transformToMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
+    @DisplayName("toMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
     void t07_2() {
         assertThat(
-                new Solution().transformToMatrix(Points.of(Point.of(4, -7), Point.of(-1, 6)))
+                Points.of(Point.of(4, -7), Point.of(-1, 6)).toMatrix()
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.', '.', '.', '*'},
