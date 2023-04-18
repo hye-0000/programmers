@@ -123,7 +123,7 @@ public class Tests {
     @DisplayName("minPoint, [Point.of(1, 1), Point.of(-1, 1)]")
     void t03() {
         assertThat(
-                new Solution().getMinPoint(Points.of(Point.of(1, 1), Point.of(-1, 1)))
+                Points.of(Point.of(1, 1), Point.of(-1, 1)).getMinPoint()
         ).isEqualTo(
                 Point.of(-1, 1)
         );
@@ -133,7 +133,7 @@ public class Tests {
     @DisplayName("minPoint, [Point.of(-5, 1), Point.of(-1, -7)]")
     void t03_2() {
         assertThat(
-                new Solution().getMinPoint(Points.of(Point.of(-5, 1), Point.of(-1, -7)))
+                Points.of(Point.of(-5, 1), Point.of(-1, -7)).getMinPoint()
         ).isEqualTo(
                 Point.of(-5, -7)
         );
@@ -143,7 +143,7 @@ public class Tests {
     @DisplayName("maxPoint, [Point.of(1, 1), Point.of(-1, 1)]")
     void t04() {
         assertThat(
-                new Solution().getMaxPoint(Points.of(Point.of(1, 1), Point.of(-1, 1)))
+                Points.of(Point.of(1, 1), Point.of(-1, 1)).getMaxPoint()
         ).isEqualTo(
                 Point.of(1, 1)
         );
@@ -153,7 +153,7 @@ public class Tests {
     @DisplayName("maxPoint, [Point.of(4, 1), Point.of(-1, 6)]")
     void t04_2() {
         assertThat(
-                new Solution().getMaxPoint(Points.of(Point.of(4, 1), Point.of(-1, 6)))
+                Points.of(Point.of(4, 1), Point.of(-1, 6)).getMaxPoint()
         ).isEqualTo(
                 Point.of(4, 6)
         );
@@ -200,7 +200,7 @@ public class Tests {
     @DisplayName("positivePoints, [Point.of(1, 1), Point.of(-1, 1)]")
     void t06() {
         assertThat(
-                new Solution().positivePoints(Points.of(Point.of(1, 1), Point.of(-1, 1)))
+                Points.of(Point.of(1, 1), Point.of(-1, 1)).positivePoints()
         ).isEqualTo(
                 Set.of(Point.of(2, 0), Point.of(0, 0))
         );
@@ -210,7 +210,7 @@ public class Tests {
     @DisplayName("positivePoints, [Point.of(4, -7), Point.of(-1, 6)]")
     void t06_2() {
         assertThat(
-                new Solution().positivePoints(Points.of(Point.of(4, -7), Point.of(-1, 6)))
+                Points.of(Point.of(4, -7), Point.of(-1, 6)).positivePoints()
         ).isEqualTo(
                 Set.of(Point.of(5, 0), Point.of(0, 13))
         );
