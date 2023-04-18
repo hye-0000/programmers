@@ -10,7 +10,7 @@ public class Main {
 class Solution {
     public String[] solution(int[][] line) {
         // 교점 구하기
-        Set<Point> points = intersections(line);
+        Set<Point> points = intersections(line).toSet();
         // 매트릭스로 옮기기
         char[][] matrix = transformToMatrix(points);
 
@@ -44,8 +44,8 @@ class Solution {
         return Point.of(x, y);
     }
 
-    public Set<Point> intersections(int[][] line) {
-        Set<Point> points = new HashSet<>();
+    public Points intersections(int[][] line) {
+       Points points = Points.of();
 
         for (int i = 0; i < line.length; i++) {
             for (int j = i + 1; j < line.length; j++) {
@@ -170,6 +170,47 @@ class Point {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+}
+
+//Point... 는 Point[]와 같은 뜻
+//특수기능: 가변인자
+//Points.of(arg1);
+//Points.of(arg1, arg2); -> 파라미터들이 알아서 배열로 들어감
+class Points{
+    private final Set<Point> data;
+
+    private Points(Set<Point> data) {
+        this.data = data;
+    }
+
+    public static Points of(Point... pointArray){
+        return new Points(
+                Arrays.stream(pointArray)
+                        //.collect(Collectors.toSet())    //immutable set이 생성됨 -> 우리는 mutable 한 것을 원함
+                        .collect(Collectors.toCollection(HashSet::new))
+        );
+    }
+
+    public boolean add(Point point){
+        return data.add(point);
+    }
+
+    public Set<Point> toSet() {
+        return data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Points points)) return false;
+
+        return Objects.equals(data, points.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return data != null ? data.hashCode() : 0;
     }
 }
 
